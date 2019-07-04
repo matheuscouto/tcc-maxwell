@@ -54,10 +54,12 @@ class HomeScreen extends React.PureComponent {
     if(editingSlot) {
       return (
         <View style={{flex: 1, width: '100%', padding: 20}}>
+
           <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10, justifyContent: 'space-between'}}>
             <Text style={{fontSize: 16, fontWeight: 'bold', marginRight: 10}}>Quantidade</Text>
             <TextInput style={{ paddingHorizontal: 15, padding: 1, width: 200, height: 40, borderRadius: 4, borderWidth: 1, borderColor: 'black'}} value={remedyAmount} onChangeText={(val) => this.setState({remedyAmount: val})} />
           </View>
+          
           <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
             <Text style={{fontSize: 16, fontWeight: 'bold', marginRight: 10, marginBottom: 10}}>Remédio</Text>
             <View style={{}}>
@@ -76,10 +78,11 @@ class HomeScreen extends React.PureComponent {
               </Picker>
             </View>
           </View>
+
             <DatePicker
               style={{width: 200, marginBottom: 10}}
               date={this.state.date}
-              mode="time"
+              mode="datetime"
               placeholder="select date"
               confirmBtnText="Confirmar"
               cancelBtnText="Cancelar"
@@ -97,7 +100,7 @@ class HomeScreen extends React.PureComponent {
               }}
               onDateChange={(date) => {this.setState({date})}}
             />
-            <Text>{moment(this.state.date).unix()}</Text>
+            
           <TouchableOpacity style={{width: '80%', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 4, backgroundColor: (this.state.remedyAmount !== '' && this.state.selectedRemedy !== '') ? '#32A890' : 'gray', alignSelf: 'center'}} onPress={this._updateSlot}>
             <Text style={{color: 'white'}}>Salvar</Text>
           </TouchableOpacity>
@@ -106,6 +109,7 @@ class HomeScreen extends React.PureComponent {
     }
     return (
       <View style={styles.container}>
+
         <Picker
           selectedValue={this.state.weekDay}
           style={{height: 50, width: 200, alignSelf: 'flex-end'}}
@@ -120,30 +124,39 @@ class HomeScreen extends React.PureComponent {
           <Picker.Item label="Sábado" value={'sat'} />
           <Picker.Item label="Domingo" value={'sun'} />
         </Picker>
+
         <View style={{width: '100%', paddingHorizontal: 20, marginTop: 20, flex: 1, marginBottom: 20, flexDirection: 'row'}}>
+          
           <View style={{maxWidth: 70, borderColor: 'black', borderWidth: 1, flex: 1, borderBottomWidth: 0}}>
             <TouchableOpacity onPress={this._selectSlot(1)} style={{width: '100%', borderBottomWidth: 1, borderBottomColor: selectedSlot === 1 ? 'white' : 'black', backgroundColor: selectedSlot === 1 ? 'black' : 'white', height: '14.285%', justifyContent: 'center', alignItems: 'center'}}>
               <Text style={{fontWeight: 'bold', fontSize: 16}}>1</Text>
             </TouchableOpacity>
+
             <TouchableOpacity onPress={this._selectSlot(2)} style={{width: '100%', borderBottomWidth: 1, borderBottomColor: selectedSlot === 2 ? 'white' : 'black', backgroundColor: selectedSlot === 2 ? 'black' : 'white', height: '14.285%', justifyContent: 'center', alignItems: 'center'}}>
               <Text style={{fontWeight: 'bold', fontSize: 16}}>2</Text>
             </TouchableOpacity>
+
             <TouchableOpacity onPress={this._selectSlot(3)} style={{width: '100%', borderBottomWidth: 1, borderBottomColor: selectedSlot === 3 ? 'white' : 'black', backgroundColor: selectedSlot === 3 ? 'black' : 'white', height: '14.285%', justifyContent: 'center', alignItems: 'center'}}>
               <Text style={{fontWeight: 'bold', fontSize: 16}}>3</Text>
             </TouchableOpacity>
+
             <TouchableOpacity onPress={this._selectSlot(4)} style={{width: '100%', borderBottomWidth: 1, borderBottomColor: selectedSlot === 4 ? 'white' : 'black', backgroundColor: selectedSlot === 4 ? 'black' : 'white', height: '14.285%', justifyContent: 'center', alignItems: 'center'}}>
               <Text style={{fontWeight: 'bold', fontSize: 16}}>4</Text>
             </TouchableOpacity>
+
             <TouchableOpacity onPress={this._selectSlot(5)} style={{width: '100%', borderBottomWidth: 1, borderBottomColor: selectedSlot === 5 ? 'white' : 'black', backgroundColor: selectedSlot === 5 ? 'black' : 'white', height: '14.285%', justifyContent: 'center', alignItems: 'center'}}>
               <Text style={{fontWeight: 'bold', fontSize: 16}}>5</Text>
             </TouchableOpacity>
+
             <TouchableOpacity onPress={this._selectSlot(6)} style={{width: '100%', borderBottomWidth: 1, borderBottomColor: selectedSlot === 6 ? 'white' : 'black', backgroundColor: selectedSlot === 6 ? 'black' : 'white', height: '14.285%', justifyContent: 'center', alignItems: 'center'}}>
               <Text style={{fontWeight: 'bold', fontSize: 16}}>6</Text>
             </TouchableOpacity>
+
             <TouchableOpacity onPress={this._selectSlot(7)} style={{width: '100%', borderBottomWidth: 1, borderBottomColor: selectedSlot === 7 ? 'white' : 'black', backgroundColor: selectedSlot === 7 ? 'black' : 'white', height: '14.285%', justifyContent: 'center', alignItems: 'center'}}>
               <Text style={{fontWeight: 'bold', fontSize: 16}}>7</Text>
             </TouchableOpacity>
           </View>
+
           <View style={{flex: 1, height: '100%', paddingLeft: 10 }}>
             {
               !(slots && slots[this.state.weekDay] && slots[this.state.weekDay][this.state.selectedSlot])
@@ -151,7 +164,8 @@ class HomeScreen extends React.PureComponent {
               : <>
                   <Text>Remédio: {slots[this.state.weekDay][this.state.selectedSlot].name}</Text>
                   <Text>Quantidade: {slots[this.state.weekDay][this.state.selectedSlot].amount}</Text>
-                  <Text>Horário: {/*moment(moment.utc(slots[this.state.weekDay][this.state.selectedSlot].time).toDate()).local().format('HH:MM')*/slots[this.state.weekDay][this.state.selectedSlot].tim}</Text>
+                  <Text>Horário: {/*moment(moment.utc(slots[this.state.weekDay][this.state.selectedSlot].time).toDate()).local().format('HH:MM')*/moment.unix(slots[this.state.weekDay][this.state.selectedSlot].time).format("HH:mm")}</Text>
+                  <Text>Foi tomado: {slots[this.state.weekDay][this.state.selectedSlot].taken ? 'Sim' : 'Não'}</Text>
                   <TouchableOpacity onPress={() => this.setState({editingSlot: true})}><Text style={{color: '#00278E', textDecorationLine: 'underline'}}>Editar slot</Text></TouchableOpacity>
                 </>
             }
