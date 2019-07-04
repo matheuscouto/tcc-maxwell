@@ -43,6 +43,7 @@ class HomeScreen extends React.PureComponent {
   }
   render() {
     const { slots, remedyAmount, remedies, editingSlot, fetchingSlots, selectedSlot } = this.state;
+    console.log('SLOTs: ', slots)
     if(!remedies || fetchingSlots) { 
       return (
         <View style={{ flex: 1, width: '100%', justifyContent: 'center', alignItems: 'center' }}>
@@ -78,7 +79,7 @@ class HomeScreen extends React.PureComponent {
             <DatePicker
               style={{width: 200, marginBottom: 10}}
               date={this.state.date}
-              mode="datetime"
+              mode="time"
               placeholder="select date"
               confirmBtnText="Confirmar"
               cancelBtnText="Cancelar"
@@ -96,7 +97,7 @@ class HomeScreen extends React.PureComponent {
               }}
               onDateChange={(date) => {this.setState({date})}}
             />
-            <Text>{this.state.date}</Text>
+            <Text>{moment(this.state.date).unix()}</Text>
           <TouchableOpacity style={{width: '80%', height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 4, backgroundColor: (this.state.remedyAmount !== '' && this.state.selectedRemedy !== '') ? '#32A890' : 'gray', alignSelf: 'center'}} onPress={this._updateSlot}>
             <Text style={{color: 'white'}}>Salvar</Text>
           </TouchableOpacity>
@@ -110,7 +111,7 @@ class HomeScreen extends React.PureComponent {
           style={{height: 50, width: 200, alignSelf: 'flex-end'}}
           onValueChange={(itemValue, itemIndex) =>
             this.setState({weekDay: itemValue})
-          }>
+        }>
           <Picker.Item label="Segunda" value={'mon'} />
           <Picker.Item label="Terça" value={'tue'} />
           <Picker.Item label="Quarta" value={'wed'} />
@@ -150,7 +151,7 @@ class HomeScreen extends React.PureComponent {
               : <>
                   <Text>Remédio: {slots[this.state.weekDay][this.state.selectedSlot].name}</Text>
                   <Text>Quantidade: {slots[this.state.weekDay][this.state.selectedSlot].amount}</Text>
-                  <Text>Horário: {moment(moment.utc(slots[this.state.weekDay][this.state.selectedSlot].time).toDate()).local().format('HH:MM')}</Text>
+                  <Text>Horário: {/*moment(moment.utc(slots[this.state.weekDay][this.state.selectedSlot].time).toDate()).local().format('HH:MM')*/slots[this.state.weekDay][this.state.selectedSlot].tim}</Text>
                   <TouchableOpacity onPress={() => this.setState({editingSlot: true})}><Text style={{color: '#00278E', textDecorationLine: 'underline'}}>Editar slot</Text></TouchableOpacity>
                 </>
             }

@@ -4,6 +4,9 @@
     "slug": "automaticDispenser",
     "privacy": "public",
     "sdkVersion": "33.0.0",
+    "android": {
+      "package": "com.maxwell.autdispenser"
+    },
     "platforms": [
       "ios",
       "android",
@@ -20,9 +23,6 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "ios": {
       "supportsTablet": true
     }

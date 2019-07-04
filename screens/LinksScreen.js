@@ -68,7 +68,7 @@ class LinksScreen extends React.PureComponent {
               <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10, justifyContent: 'space-between'}}>
                 <Text style={{fontSize: 16}}>{remedy.name}</Text>
                 <View style={{flexDirection: 'row'}}>
-                  <MaterialIcons name="edit" size={24} style={{marginRight: 3}} />
+                  {/* <MaterialIcons name="edit" size={24} style={{marginRight: 3}} /> */}
                   <TouchableOpacity onPress={this._deleteRemedy(remedyId)}>
                     <MaterialIcons name="delete" size={24} color="red" />
                   </TouchableOpacity>
